@@ -1,0 +1,154 @@
+<!doctype html>
+
+<html>
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Drag and Drop example</title>
+
+        <!-- CSS -->
+        <link id="hostStyle" rel="stylesheet" type="text/css" href="css/style.css">
+
+        <!-- EXTERNAL LIBS -->
+        <script src="libs/Jquery/jquery-3.1.1.min.js"></script>
+        <script src="libs/CEP/7.0/CSInterface.js"></script>
+        <script src="libs/debugHelper.js"></script>
+        <script src="libs/themeManager.js"></script>
+        <script src="libs/Utils.js"></script>
+        
+
+        <script type="text/javascript">
+            themeManager.init();
+			
+			
+			var colorData = {};
+			function onColorDragStart(event) {
+				var cVal = Utils.parseCSSColorStringToHex($(event.currentTarget).css("backgroundColor"));
+				colorData.code = '{color:4000001}';
+				colorData.r = cVal[0];
+				colorData.g = cVal[1];
+				colorData.b = cVal[2];
+				colorData.hex = Utils.rgb2hex(cVal);
+				
+				//ev.dataTransfer.effectAllowed='move';
+				event.dataTransfer.setData("text/plain", colorData.code);
+				//ev.dataTransfer.setDragImage(ev.target,100,100);
+				return true;
+			}
+			function onColorDragEnd(ev) {
+				if(!colorData.code)
+					return;
+				var script = 'replaceColorString("'+colorData.code+'", '+colorData.r+', '+colorData.g+', '+colorData.b+', "color", "#'+colorData.hex+'")';
+				colorData = {};
+				
+				var csLib = new CSInterface();
+				new csLib.evalScript(script, function(){
+					//console.log("Done");
+				});
+				return true;
+			}
+			
+			
+			
+			var imageData = {};
+			function onImageDragStart(event) {
+				imageData.code = '{image:5000001}';
+				imageData.type = $(event.currentTarget).attr("source-file-type");
+				imageData.src = (new CSInterface).getSystemPath(SystemPath.EXTENSION) + $(event.currentTarget).attr("source-file");
+				event.dataTransfer.setData("text/plain", imageData.code);
+				
+				//ev.dataTransfer.setDragImage(ev.target,100,100);
+				return true;
+			}
+			function onImageDragEnd(ev) {
+				if(!imageData.code)
+					return;
+				var script = 'replaceImageString("'+imageData.code+'", "'+imageData.type+'", "'+imageData.src+'")';
+				imageData = {};
+				
+				var csLib = new CSInterface();
+				new csLib.evalScript(script, function(){
+					//console.log("Done");
+				});
+				return true;
+			}
+			
+        </script>
+
+    </head>
+    <body>
+        
+		<div class="title">
+			Colors:
+		</div>
+        <div class="container hostBorder">
+			<div class="color" style="background-color:#55AAFF" draggable="true" ondragstart="onColorDragStart(event)" ondragend="onColorDragEnd(event)"></div>
+			<div class="color" style="background-color:#FF55AA" draggable="true" ondragstart="onColorDragStart(event)" ondragend="onColorDragEnd(event)"></div>
+			<div class="color" style="background-color:#AAFF55" draggable="true" ondragstart="onColorDragStart(event)" ondragend="onColorDragEnd(event)"></div>
+			<div class="color" style="background-color:#FFAA55" draggable="true" ondragstart="onColorDragStart(event)" ondragend="onColorDragEnd(event)"></div>
+			<div class="color" style="background-color:#AA55FF" draggable="true" ondragstart="onColorDragStart(event)" ondragend="onColorDragEnd(event)"></div>
+		</div>
+		
+		<div class="title">
+			Raster images:
+		</div>
+		<div class="container hostBorder">
+			<div class="image-holder" 
+				draggable="true" 
+				ondragstart="onImageDragStart(event)" 
+				ondragend="onImageDragEnd(event)"
+				source-file-type="raster"
+				source-file="/resources/png_example_1.png">
+				<div class="image" style="background: url('resources/png_example_1_thumb.png') no-repeat center center;"></div>
+			</div>
+			<div class="image-holder" 
+				draggable="true" 
+				ondragstart="onImageDragStart(event)" 
+				ondragend="onImageDragEnd(event)"
+				source-file-type="raster"
+				source-file="/resources/jpg_example_1.jpg">
+				<div class="image" style="background: url('resources/jpg_example_1_thumb.png') no-repeat center center;"></div>
+			</div>
+		</div>
+		
+		<div class="title">
+			Vector images:
+		</div>
+		<div class="container hostBorder">
+			<div class="image-holder" 
+				draggable="true" 
+				ondragstart="onImageDragStart(event)" 
+				ondragend="onImageDragEnd(event)"
+				source-file-type="vector"
+				source-file="/resources/vector_example_1.ai">
+				<div class="image" style="background: url('resources/vector_example_1_thumb.png') no-repeat center center;"></div>
+			</div>
+			<div class="image-holder" 
+				draggable="true" 
+				ondragstart="onImageDragStart(event)" 
+				ondragend="onImageDragEnd(event)"
+				source-file-type="vector"
+				source-file="/resources/vector_example_2.eps">
+				<div class="image" style="background: url('resources/vector_example_2_thumb.png') no-repeat center center;"></div>
+			</div>
+			<div class="image-holder" 
+				draggable="true" 
+				ondragstart="onImageDragStart(event)" 
+				ondragend="onImageDragEnd(event)"
+				source-file-type="vector"
+				source-file="/resources/vector_example_3.svg">
+				<div class="image" style="background: url('resources/vector_example_3_thumb.png') no-repeat center center;"></div>
+			</div>
+			<div class="image-holder" 
+				draggable="true" 
+				ondragstart="onImageDragStart(event)" 
+				ondragend="onImageDragEnd(event)"
+				source-file-type="vector"
+				source-file="/resources/vector_example_4.eps">
+				<div class="image" style="background: url('resources/vector_example_4_thumb.png') no-repeat center center;"></div>
+			</div>
+		</div>
+		
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<ExtensionManifest Version="6.0" ExtensionBundleId="sergey.kupin.examples" ExtensionBundleVersion="1.0.0"
+		ExtensionBundleName="sergey.kupin.examples" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ExtensionList>
+
+		<Extension Id="sergey.kupin.examples.dd" Version="1.0.0" />
+
+	</ExtensionList>
+	<ExecutionEnvironment>
+		<HostList>
+			<Host Name="ILST" Version="19.2" />
+		</HostList>
+		<LocaleList>
+			<Locale Code="All" />
+		</LocaleList>
+		<RequiredRuntimeList>
+			<RequiredRuntime Name="CSXS" Version="6.0" />
+		</RequiredRuntimeList>
+	</ExecutionEnvironment>
+	<DispatchInfoList>
+		
+
+
+		<Extension Id="sergey.kupin.examples.dd">
+			<DispatchInfo >
+				<Resources>
+					<MainPath>./index.html</MainPath>
+					<ScriptPath>./jsx/core.jsx</ScriptPath>
+					<CEFCommandLine>
+						<Parameter>--ignore-certificate-errors</Parameter>
+						<Parameter>--high-dpi-support=1</Parameter>
+						<Parameter>--nodejs-disabled</Parameter>
+					</CEFCommandLine>
+				</Resources>
+				<Lifecycle>
+					<AutoVisible>true</AutoVisible>
+				</Lifecycle>
+				<UI>
+					<Type>Panel</Type>
+					<Menu>Kupin - Drag And Drop</Menu>
+					<Geometry>
+						<Size>
+							<Height>421</Height>
+							<Width>561</Width>
+						</Size>
+						<MaxSize>
+							<Height>780</Height>
+							<Width>1280</Width>
+						</MaxSize>
+						<MinSize>
+							<Height>420</Height>
+							<Width>560</Width>
+						</MinSize>
+					</Geometry>
+					<Icons>
+						<Icon Type="Normal">./icons/IconLight.png</Icon>
+						<Icon Type="RollOver">./icons/IconLight.png</Icon>
+						<Icon Type="Disabled">./icons/IconLight.png</Icon>
+						<Icon Type="DarkNormal">./icons/IconDark.png</Icon>
+						<Icon Type="DarkRollOver">./icons/IconDark.png</Icon>
+					</Icons>
+				</UI>
+			</DispatchInfo>
+		</Extension>
+
+
+
+	</DispatchInfoList>
+</ExtensionManifest>

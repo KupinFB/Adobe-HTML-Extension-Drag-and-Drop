@@ -1,0 +1,43 @@
+html{
+	
+}
+
+button
+{
+    border:1px solid;
+    border-radius:3px;
+    height:20px;
+}
+
+.hostFontSize{}
+.hostFontFamily{}
+.hostFontColor{}
+.hostBgd{}
+.hostBorder{}
+
+/*---------------------------------*/
+
+.container{
+	height: 50px;
+	margin: 5px 0px 5px 0px;
+}
+
+.container .color{
+	width: 26px;
+	height:26px;
+	margin: 0px 1px 1px 0px;
+	float: left;
+}
+
+.container .image-holder{
+	width: 40px;
+	height:40px;
+	margin: 0px 1px 1px 0px;
+	background-color: #EEEEEE;
+	float: left;
+}
+
+.container .image-holder .image{
+	width: 40px;
+	height:40px;
+}
