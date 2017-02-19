@@ -30,16 +30,18 @@
 				colorData.g = cVal[1];
 				colorData.b = cVal[2];
 				colorData.hex = Utils.rgb2hex(cVal);
+				colorData.offsetX = event.offsetX;
+				colorData.offsetY = event.offsetY;
 				
-				//ev.dataTransfer.effectAllowed='move';
+				//ev.dataTransfer.effectAllowed='copy';
 				event.dataTransfer.setData("text/plain", colorData.code);
-				//ev.dataTransfer.setDragImage(ev.target,100,100);
+				//ev.dataTransfer.setDragImage(ev.target.parent,100,100);
 				return true;
 			}
 			function onColorDragEnd(ev) {
 				if(!colorData.code)
 					return;
-				var script = 'replaceColorString("'+colorData.code+'", '+colorData.r+', '+colorData.g+', '+colorData.b+', "color", "#'+colorData.hex+'")';
+				var script = 'replaceColorString("'+colorData.code+'", '+colorData.r+', '+colorData.g+', '+colorData.b+', "color", "#'+colorData.hex+'", '+colorData.offsetX+', '+colorData.offsetY+')';
 				colorData = {};
 				
 				var csLib = new CSInterface();

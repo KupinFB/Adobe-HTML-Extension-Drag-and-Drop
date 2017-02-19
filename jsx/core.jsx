@@ -35,7 +35,7 @@ function replaceImageString(targetCode, imageType, src){
 
 
 
-function replaceColorString(targetCode, r, g, b, text1, text2){
+function replaceColorString(targetCode, r, g, b, text1, text2, offsetX, offsetY){
     var doc = app.activeDocument;
     if(!doc)
         return;
@@ -44,8 +44,9 @@ function replaceColorString(targetCode, r, g, b, text1, text2){
         for(var i=0; i< cLayer.textFrames.length; i++){
             var tFr = cLayer.textFrames[i];
             if(tFr.contents == targetCode){
-                var x = tFr.left;
-                var y = tFr.top;
+				//alert(tFr.width)
+                var x = tFr.left+tFr.width/2-offsetX;
+                var y = tFr.top-tFr.height/2+offsetY;
                 
                 var group = doc.groupItems.add();                
                 
