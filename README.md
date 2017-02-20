@@ -3,6 +3,7 @@ Adobe HTML Extension - Drag and Drop example
 
 ------
 Youtube: [video](https://www.youtube.com/watch?v=7ieGzbDShXc)
+
 This example shows the way how you can realise Drag&Drop of some elements from an HTML Panel to AI documents.
 ######The Panel was created and tested for illustrator 2017. Minimal version of illustrator is 2015.3 (20.0).
 ======
